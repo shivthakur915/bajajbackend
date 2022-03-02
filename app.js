@@ -1,26 +1,12 @@
-import express from "express";
-import Cors from 'cors';
-const app = express();
-const port = process.env.PORT || 8001;
-app.use(express.json());
-app.use(Cors());
+'use strict';
 
-app.get('/', (req, res) => res.status(200).send("Hello Programmers"));
+const path = require('path');
+const app = require('express')();
 
-app.post('/bfhl', (req, res) => {
-    const data = [...req.body.data]
+const port = process.env.PORT || 8080;
 
-    let numbers = data.filter((value) => !isNaN(value))
+app.use('/', express.static(path.join(__dirname, 'testheroku')));
 
-    let alphabets = data.filter((value) => (/[a-zA-Z]/).test(value));
-    res.status(200).send({
-        'is_success': 'true',
-        'user_id': 'yourname_yourrollno',
-        'email': 'yourrmail',
-        'roll_number': 'yourrollno',
-        'numbers': numbers,
-        'alphabet': alphabets
-    })
-})
-
-app.listen(port, () => console.log(`listening :${port}`));
+app.listen(port, () => {
+  console.log(`Listening on http://localhost:${port}/`);
+});
