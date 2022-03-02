@@ -1,7 +1,7 @@
 'use strict';
-
+import express from "express";
 const path = require('path');
-const app = require('express')();
+const app = express();
 
 const port = process.env.PORT || 8080;
 
